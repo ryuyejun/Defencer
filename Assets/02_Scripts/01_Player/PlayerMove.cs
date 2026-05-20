@@ -1,37 +1,39 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private int playerx;
     [SerializeField] private Transform player;
 
-    void Start()
+    private void Start()
     {
         playerx = 0;
         SetPlayerPos(0);
     }
-    void Update()
+
+    private void OnMove(InputValue value)
     {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            if(playerx != 2)
-            {
-                playerx += 1;
-                SetPlayerPos(playerx);
-            }
-        }
-        if(Input.GetKeyDown(KeyCode.S))
+        Vector2 dir = value.Get<Vector2>();
+        if(dir.y == -1)
         {
             if(playerx != -2)
             {
                 playerx -= 1;
                 SetPlayerPos(playerx);
             }
-
+        }
+        if(dir.y == 1)
+        {
+            if(playerx != 2)
+            {   
+                playerx += 1;
+                SetPlayerPos(playerx);
+            }
         }
     }
 
-    void SetPlayerPos(int x)
+    private void SetPlayerPos(int x)
     {
         player.position = new Vector3(player.position.x, player.position.y, x * 6);
     }
