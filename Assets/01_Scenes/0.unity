@@ -4363,11 +4363,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d21f58ffec54f508fb304b59d359d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPool
-  prevWave: 0
   waveList:
   - {fileID: 11400000, guid: 57c06206bc59c4350b4d93d7825e9a93, type: 2}
   turn: {fileID: 1384008027}
   enemies: []
+  enemySlot: 020000000100000000000000fffffffffeffffff
+  currentWaveData: {fileID: 0}
 --- !u!114 &1384008027
 MonoBehaviour:
   m_ObjectHideFlags: 0

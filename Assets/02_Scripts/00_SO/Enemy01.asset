@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d446f37d4e2754abc83a0dd364b33468, type: 3}
   m_Name: Enemy01
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
-  damage: 0
-  maxhp: 0
-  enemyPrefab: {fileID: 0}
+  enemyName: Enemy1
+  damage: 1
+  maxhp: 10
+  enemyPrefab: {fileID: 4092314308674532139, guid: 22efa7f492fa54c85910024c5be6240f, type: 3}
+  spawndelay: 2

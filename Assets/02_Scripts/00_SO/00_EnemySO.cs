@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Wave/Enemy")]
+[CreateAssetMenu(menuName = "SO/Enemy")]
 public class EnemySO : ScriptableObject
 {
     [SerializeField] private string enemyName;
