@@ -6,6 +6,7 @@ public class EnemySO : ScriptableObject
     [SerializeField] private string enemyName;
     public int damage;
     public int maxhp;
-    public GameObject enemyPrefab;
+    public EnemyMove enemyPrefab;
     public int spawndelay;
+    public int speed;
 }

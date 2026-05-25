@@ -24,6 +24,7 @@ public class EnemyPool : MonoBehaviour
     public void StartWave(int wavenum)
     {
         currentWaveData = waveList[wavenum];
+        Stat.instance.killedEnemy = 0;
         enemyNum = 0;
     }
 
@@ -32,19 +33,20 @@ public class EnemyPool : MonoBehaviour
         StartWave(0);
         for(int i = 0; i < currentWaveData.enemyList.Count; i++)
         {
-            GameObject enemy = Instantiate(currentWaveData.enemyList[i].enemyPrefab);
-            enemies.Add(enemy);
-            enemy.SetActive(false);
+            EnemyMove enemy = Instantiate(currentWaveData.enemyList[i].enemyPrefab);
+            enemy.SO = currentWaveData.enemyList[i];
+            enemies.Add(enemy.gameObject);
+            enemy.gameObject.SetActive(false);
         }
     }
 
 
     private void TurnStart()
     {
-        if(enemyNum > currentWaveData.enemyList.Count) return;
+        if(enemyNum >= currentWaveData.enemyList.Count) return;
         if(turnDelay <= 0)
         {
-            enemies[enemyNum].transform.position = new Vector3(29f, 5f, enemySlot[Random.Range(0, 5)] * 6);
+            enemies[enemyNum].transform.position = new Vector3(35f, 5f, enemySlot[Random.Range(0, 5)] * 6);
             enemies[enemyNum].SetActive(true);
             turnDelay = currentWaveData.enemyList[enemyNum].spawndelay;
             enemyNum += 1;
