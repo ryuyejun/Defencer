@@ -3,7 +3,9 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     public EnemySO SO;
-    private int prevTile;
+    protected int gridx;
+    protected int gridy;
+    protected StateController Stat; 
     private void OnEnable()
     {
         TurnManage.instance.Turn += TurnStart;
@@ -11,19 +13,30 @@ public class EnemyMove : MonoBehaviour
     private void OnDisable()
     {
         TurnManage.instance.Turn -= TurnStart;
+        Stat.ClearPosition(this, gridx, gridy);
+    }
+    
+    public void SetStat(StateController _Stat)
+    {
+        Stat = _Stat;
     }
 
-    private void TurnStart()
+    public void Init(int startx, int starty)
     {
-        transform.position -= new Vector3(6f * SO.speed, 0f, 0f);
-        prevTile += SO.speed;
-        if(prevTile >= 10)
-        {
-            Stat.instance.HP -= SO.damage;
-            Stat.instance.killedEnemy += 1;
-            Stat.instance.textUI.SetEnemyText();
-            Stat.instance.textUI.SetAllyHPText();
-            gameObject.SetActive(false);
-        }
+        gridx = startx;
+        gridy = starty;
+    }
+
+    protected virtual void TurnStart()
+    {
+    }
+
+    public void FinishRun()
+    {
+        Stat.HP -= SO.damage;
+        Stat.killedEnemy += 1;
+        Stat.textUI.SetEnemyText();
+        Stat.textUI.SetAllyHPText();
+        gameObject.SetActive(false);
     }
 }

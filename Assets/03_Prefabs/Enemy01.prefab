@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4094981409789863359}
   - component: {fileID: 6929881056079530666}
   - component: {fileID: 2433550486285405020}
-  - component: {fileID: 7719354521855143249}
+  - component: {fileID: 8971534968190420139}
   m_Layer: 0
   m_Name: Enemy01
   m_TagString: Untagged
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e2d383ffd48b4667ab169b3df00e7f5, type: 2}
+  - {fileID: 2100000, guid: 93020d5b5989347dcb84e5828fc456e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,7 +115,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7719354521855143249
+--- !u!114 &8971534968190420139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4092314308674532139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 364f26d69b9da4ec5a8eb0dfd5116bbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a92b43c4de6f4e368e601b925ec67dc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
-  turn: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveForward
+  SO: {fileID: 0}
