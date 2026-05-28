@@ -43,7 +43,8 @@ public class StateController : MonoBehaviour
                 enemy.FinishRun();
                 return true;
             }
-            Debug.Log($"oldx : {oldx}\noldy : {oldy}\nnewx : {newx}\nnewy : {newy}\n잘못된 범위");
+            // Debug.Log($"oldx : {oldx}\noldy : {oldy}\nnewx : {newx}\nnewy : {newy}\n잘못된 범위");
+            // 돌아가는 경로 로직에서 여기서 false를 리턴받아 방향을 전환하기 때문에 주석처리
             return false;
         }
 

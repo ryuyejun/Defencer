@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6454340203067546509}
   - component: {fileID: 8000861277730453260}
   - component: {fileID: -4996920769832967579}
+  - component: {fileID: 6815940983166266239}
   m_Layer: 0
   m_Name: Enemy03
   m_TagString: Untagged
@@ -128,3 +129,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMove_Jurney
   SO: {fileID: 0}
+--- !u!114 &6815940983166266239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373295057874080597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4df8a1e3746457e9712172277ffb82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPointerEnter
+  renderer: {fileID: 6454340203067546509}
+  outLine: {fileID: 2100000, guid: 43d790877c5e24cb3b6b80ccb36141df, type: 2}

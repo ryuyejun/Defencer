@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
   enemyList:
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
+  - {fileID: 11400000, guid: 415d4d3f34b514ab58627df8b8a91ea0, type: 2}
