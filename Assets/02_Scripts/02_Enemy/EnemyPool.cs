@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyPool : MonoBehaviour
@@ -9,6 +10,7 @@ public class EnemyPool : MonoBehaviour
     public List<WaveSO> waveList = new List<WaveSO>();
     [SerializeField] private int[] enemySlot = new int[5] {2, 1, 0, -1, -2};
     public WaveSO currentWaveData;
+    public int currentWaveNum;
     private int turnDelay;
     private int enemyNum;
 
@@ -24,14 +26,16 @@ public class EnemyPool : MonoBehaviour
 
     public void StartWave(int wavenum)
     {
+        if(wavenum >= waveList.Count)
+        {
+            Debug.Log("게임 클리어");
+            return;
+        }
         currentWaveData = waveList[wavenum];
+        currentWaveNum = wavenum;
         Stat.killedEnemy = 0;
         enemyNum = 0;
-    }
-
-    private void Start()
-    {
-        StartWave(0);
+        turnDelay = 0;
         for(int i = 0; i < currentWaveData.enemyList.Count; i++)
         {
             EnemyMove enemy = Instantiate(currentWaveData.enemyList[i].enemyPrefab);
@@ -40,6 +44,28 @@ public class EnemyPool : MonoBehaviour
             enemies.Add(enemy);
             enemy.gameObject.SetActive(false);
         }
+    }
+
+    public void EndWave()
+    {
+        foreach(EnemyMove enemy in enemies)
+            Destroy(enemy.gameObject);
+        enemies.Clear();
+        Debug.Log($"{currentWaveNum + 1}번째 웨이브 클리어");
+
+        StartCoroutine(WaveEndWait(currentWaveNum));
+    }
+    private IEnumerator WaveEndWait(int wavenum)
+    {
+        yield return new WaitForSeconds(10f);
+
+        Debug.Log($"{wavenum + 2}번째 웨이브 시작");
+        StartWave(wavenum + 1);
+    }
+
+    private void Start()
+    {
+        StartWave(0);
     }
 
 

@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: Enemy1
   damage: 1
   maxhp: 10
-  enemyPrefab: {fileID: 7719354521855143249, guid: 22efa7f492fa54c85910024c5be6240f, type: 3}
+  enemyPrefab: {fileID: 8971534968190420139, guid: 22efa7f492fa54c85910024c5be6240f, type: 3}
   spawndelay: 2
   speed: 1

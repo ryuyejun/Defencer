@@ -14,13 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
   enemyList:
   - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: 39f0f133422f9481c8b34ecd5ec823b3, type: 2}
-  - {fileID: 11400000, guid: bdd872e3b5bdc44339c0be54334969f2, type: 2}

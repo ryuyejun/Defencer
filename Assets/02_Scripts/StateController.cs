@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class StateController : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class StateController : MonoBehaviour
         {
             grid[oldx, oldy] = null;
             grid[newx, newy] = enemy;
-            enemy.gameObject.transform.position = new Vector3(35f - newx * 6f, 5f, 12 - newy * 6f);
+            enemy.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6f), 0.5f);
             
             return true;
         }
