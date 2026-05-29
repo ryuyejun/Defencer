@@ -14,7 +14,5 @@ public class EnemyMoveForward : EnemyMove
         }
         else
             Debug.Log("이동 실패");
-        // 부모의 TurnStart()에 아무것도 안 넣었으니 주석 처리
-        // base.TurnStart();
     }
 }
