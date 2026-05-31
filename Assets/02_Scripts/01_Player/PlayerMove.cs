@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,6 +36,7 @@ public class PlayerMove : MonoBehaviour
 
     private void SetPlayerPos(int x)
     {
-        player.position = new Vector3(player.position.x, player.position.y, x * 6);
+        player.DOKill();
+        player.DOMove(new Vector3(player.position.x, player.position.y, x * 6), 0.3f);
     }
 }

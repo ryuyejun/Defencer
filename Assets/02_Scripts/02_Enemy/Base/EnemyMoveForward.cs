@@ -14,7 +14,5 @@ public class EnemyMoveForward : EnemyMove
         }
         else
             Debug.Log("이동 실패");
-
-        base.TurnStart();
     }
 }

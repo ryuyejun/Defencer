@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9050151180338076457}
   - component: {fileID: 2618303481595895232}
   - component: {fileID: -441258611191996563}
+  - component: {fileID: 7482002020691508883}
   m_Layer: 0
   m_Name: Enemy02
   m_TagString: Untagged
@@ -69,6 +70,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0e5058b9e45d44da09fb02c084115b63, type: 2}
+  - {fileID: 2100000, guid: 43d790877c5e24cb3b6b80ccb36141df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,3 +130,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveForward
   SO: {fileID: 0}
+--- !u!114 &7482002020691508883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748016277851040632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4df8a1e3746457e9712172277ffb82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPointerEnter
+  renderer: {fileID: 9050151180338076457}
+  outLine: {fileID: 2100000, guid: 43d790877c5e24cb3b6b80ccb36141df, type: 2}

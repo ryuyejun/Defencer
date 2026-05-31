@@ -14,6 +14,11 @@ public class ConfigTextUI : MonoBehaviour
         SetAllyHPText();
     }
 
-    public void SetEnemyText() => leftEnemyText.text = $"{Stat.killedEnemy} / {pool.currentWaveData.enemyList.Count}";
+    public void SetEnemyText()
+    {
+        leftEnemyText.text = $"{Stat.killedEnemy} / {pool.currentWaveData.enemyList.Count}";
+        if(Stat.killedEnemy >= pool.currentWaveData.enemyList.Count)
+            pool.EndWave();
+    }
     public void SetAllyHPText() => allyHPText.text = $"{Stat.HP}";
 }

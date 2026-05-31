@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class StateController : MonoBehaviour
 {
@@ -42,15 +43,15 @@ public class StateController : MonoBehaviour
                 enemy.FinishRun();
                 return true;
             }
-            Debug.Log($"oldx : {oldx}\noldy : {oldy}\nnewx : {newx}\nnewy : {newy}\n잘못된 범위");
             return false;
         }
 
         if(grid[newx, newy] == null && grid[oldx, oldy] == enemy)
         {
+            enemy.transform.DOKill();
             grid[oldx, oldy] = null;
             grid[newx, newy] = enemy;
-            enemy.gameObject.transform.position = new Vector3(35f - newx * 6f, 5f, 12 - newy * 6f);
+            enemy.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6f), 0.5f);
             
             return true;
         }
