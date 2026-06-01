@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyPool : MonoBehaviour
 {
+    [SerializeField] private RePosBoard board;
     [SerializeField] private TurnManage turn;
     [SerializeField] private StateController Stat;
     [SerializeField] private List<EnemyMove> enemies = new List<EnemyMove>();
@@ -42,6 +43,7 @@ public class EnemyPool : MonoBehaviour
             enemy.SO = currentWaveData.enemyList[i];
             enemy.SetStat(Stat);
             enemies.Add(enemy);
+            enemy.pointer.backboard = board;
             enemy.gameObject.SetActive(false);
         }
     }

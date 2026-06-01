@@ -9,12 +9,14 @@ public class StateController : MonoBehaviour
 
     public int mapX;
     public int mapY;
-    private EnemyMove[,] grid;
+    private EnemyMove[,] enemygrid;
+    private AllyMove[,] allygrid;
 
     private void Awake()
     {
         mapX += 1;
-        grid = new EnemyMove[mapX, mapY];
+        enemygrid = new EnemyMove[mapX, mapY];
+        allygrid = new AllyMove[mapX, mapY];
     }
     private bool CanSetCoord(int x, int y)
     {
@@ -25,16 +27,29 @@ public class StateController : MonoBehaviour
     {
         if (!CanSetCoord(newx, newy)) return false;
 
-        if(grid[newx, newy] == null)
+        if(enemygrid[newx, newy] == null)
         {
-            grid[newx, newy] = enemy;
+            enemygrid[newx, newy] = enemy;
             
             return true;
         }
         return false;
     }
 
-    public bool UpdatePosition(EnemyMove enemy, int oldx, int oldy, int newx, int newy)
+    public bool InitAlly(AllyMove ally, int newx, int newy)
+    {
+        if(!CanSetCoord(newx, newy)) return false;
+
+        if(allygrid[newx, newy] == null)
+        {
+            allygrid[newx, newy] = ally;
+
+            return true;
+        }
+        return false;
+    }
+
+    public bool EnemyUpdatePosition(EnemyMove enemy, int oldx, int oldy, int newx, int newy)
     {
         if (!CanSetCoord(oldx, oldy) || !CanSetCoord(newx, newy))
         {
@@ -46,22 +61,57 @@ public class StateController : MonoBehaviour
             return false;
         }
 
-        if(grid[newx, newy] == null && grid[oldx, oldy] == enemy)
+        if(enemygrid[newx, newy] == null && enemygrid[oldx, oldy] == enemy)
         {
-            enemy.transform.DOKill();
-            grid[oldx, oldy] = null;
-            grid[newx, newy] = enemy;
-            enemy.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6f), 0.5f);
-            
-            return true;
+            if(enemy != null)
+            {
+                enemy.transform.DOKill();
+                enemygrid[oldx, oldy] = null;
+                enemygrid[newx, newy] = enemy;
+                enemy.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6f), 0.5f);
+                
+                return true;
+            }
         }
-        Debug.Log("위치메 이미 있음");
         return false;
     }
 
-    public void ClearPosition(EnemyMove enemy, int x, int y)
+    public bool AllyUpdatePosition(AllyMove ally, int oldx, int oldy, int newx, int newy)
     {
-        if(grid[x, y] == enemy)
-            grid[x, y] = null;
+        if (!CanSetCoord(oldx, oldy) || !CanSetCoord(newx, newy))
+        {
+            if(newx <= mapX)
+            {
+                ally.FinishRun();
+                return true;
+            }
+            return false;
+        }
+
+        if(allygrid[newx, newy] == null && allygrid[oldx, oldy] == ally)
+        {
+            if(ally != null)
+            {
+                ally.transform.DOKill();
+                allygrid[oldx, oldy] = null;
+                allygrid[newx, newy] = ally;
+                ally.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6), 0.5f);
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void EnemyClearPosition(EnemyMove enemy, int x, int y)
+    {
+        if(enemygrid[x, y] == enemy)
+            enemygrid[x, y] = null;
+    }
+
+    public void AllyClearPosition(AllyMove ally, int x, int y)
+    {
+        if(allygrid[x, y] == ally)
+            allygrid[x, y] = null;
     }
 }

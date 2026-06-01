@@ -14,7 +14,7 @@ public class EnemyMove_Jurney : EnemyMove
             targety = gridy;
         }
 
-        if(Stat.UpdatePosition(this, gridx, gridy, targetx, targety))
+        if(Stat.EnemyUpdatePosition(this, gridx, gridy, targetx, targety))
         {
             gridx = targetx;
             gridy = targety;
@@ -24,7 +24,7 @@ public class EnemyMove_Jurney : EnemyMove
         {
             targetx = gridx + SO.speed;
             targety = gridy;
-            if(Stat.UpdatePosition(this, gridx, gridy, targetx, targety))
+            if(Stat.EnemyUpdatePosition(this, gridx, gridy, targetx, targety))
             {
                 gridx = targetx;
                 gridy = targety;
