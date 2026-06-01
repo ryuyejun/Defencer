@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class EnemyMoveForward : EnemyMove
+public class AllyMove_Forward : AllyMove
 {
     protected override void TurnStart()
     {
-        int targetx = gridx + SO.speed;
+        int targetx = gridx - SO.speed;
         int targety = gridy;
 
-        if(Stat.EnemyUpdatePosition(this, gridx, gridy, targetx, targety))
+        if(Stat.AllyUpdatePosition(this, gridx, gridy, targetx, targety))
         {
             gridx = targetx;
             gridy = targety;

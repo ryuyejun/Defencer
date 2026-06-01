@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveForward
   SO: {fileID: 0}
+  pointer: {fileID: -2529775466133897418}
 --- !u!114 &-2529775466133897418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,5 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4df8a1e3746457e9712172277ffb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPointerEnter
-  renderer: {fileID: 6929881056079530666}
+  zoomFov: 30
+  zoomTime: 0.5
+  offset: {x: -6, y: 35, z: 0}
+  backboard: {fileID: 0}
+  enemyren: {fileID: 6929881056079530666}
   outLine: {fileID: 2100000, guid: 43d790877c5e24cb3b6b80ccb36141df, type: 2}
+  isClicked: 0

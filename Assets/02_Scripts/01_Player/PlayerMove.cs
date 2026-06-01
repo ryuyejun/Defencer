@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private int playerx;
+    public int playerx;
     [SerializeField] private Transform player;
 
     private void Start()

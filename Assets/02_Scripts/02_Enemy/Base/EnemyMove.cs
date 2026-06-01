@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     public EnemySO SO;
+    public EnemyPointerEnter pointer;
     protected int gridx;
     protected int gridy;
     protected StateController Stat; 
@@ -13,7 +14,7 @@ public class EnemyMove : MonoBehaviour
     private void OnDisable()
     {
         TurnManage.instance.Turn -= TurnStart;
-        Stat.ClearPosition(this, gridx, gridy);
+        Stat.EnemyClearPosition(this, gridx, gridy);
     }
     
     public void SetStat(StateController _Stat)
