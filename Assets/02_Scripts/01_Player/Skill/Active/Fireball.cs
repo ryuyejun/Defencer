@@ -14,16 +14,13 @@ public class Fireball : PlayerSkillSO
         AllyMove fireBullet = pool.Get();
         if(stat.InitAlly(fireBullet, gridx, -(firsty - 2)))
         {
+            fireBullet.SetStat(stat, this);
             fireBullet.Init(gridx, -(firsty - 2));
             fireBullet.transform.position = new Vector3(35f - gridx * 6f, 5f, gridy * 6f);
         }
-    }
-    
-    public override void TurnStart()
-    {
-        if(cooltime > 0)
+        else
         {
-            cooltime -= 1;
+            pool.Release(fireBullet);
         }
     }
 }

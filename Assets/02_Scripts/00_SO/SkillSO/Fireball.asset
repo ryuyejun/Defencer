@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: Assembly-CSharp::Fireball
   dmg: 1
-  skillPrefab: {fileID: 0}
+  skillPrefab: {fileID: 8802870875642923971, guid: 3327d5dfe1d1a41648436a3e88cc13cf, type: 3}
+  cooltime: 3
+  speed: 1
+  currentcool: 0
