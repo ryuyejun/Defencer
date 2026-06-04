@@ -4,8 +4,8 @@ public class AllyMove : MonoBehaviour
 {
     protected int gridx;
     protected int gridy;
-    [SerializeField] protected PlayerSkillSO SO;
-    [SerializeField] protected StateController Stat;
+    protected PlayerSkillSO SO;
+    protected StateController Stat;
     private void OnEnable()
     {
         TurnManage.instance.Turn += TurnStart;
@@ -32,6 +32,8 @@ public class AllyMove : MonoBehaviour
     {
         SO.skillpool.Release(this);
     }
+
+    public int OnHit() { return SO.dmg; }
 
     protected virtual void TurnStart()
     {

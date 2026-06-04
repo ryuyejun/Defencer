@@ -40,6 +40,12 @@ public class StateController : MonoBehaviour
     {
         if(!CanSetCoord(newx, newy)) return false;
 
+        if(enemygrid[newx, newy] != null)
+        {
+            enemygrid[newx, newy].GetHit(ally.OnHit());
+            ally.FinishRun();
+        }
+
         if(allygrid[newx, newy] == null)
         {
             allygrid[newx, newy] = ally;
@@ -80,12 +86,30 @@ public class StateController : MonoBehaviour
     {
         if (!CanSetCoord(oldx, oldy) || !CanSetCoord(newx, newy))
         {
-            if(newx <= mapX)
+            if(newx < 1)
             {
                 ally.FinishRun();
                 return true;
             }
             return false;
+        }
+
+        if((enemygrid[newx, newy] != null || enemygrid[oldx, oldy] != null) && allygrid[oldx, oldy] == ally)
+        {
+            if(ally != null)
+            {
+                Debug.Log("hit");
+                ally.transform.DOKill();
+
+                EnemyMove targetEnemy = enemygrid[newx, newy] != null ? enemygrid[newx, newy] : enemygrid[oldx, oldy];
+
+                targetEnemy.GetHit(ally.OnHit());
+                allygrid[oldx, oldy] = null;
+                ally.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6), 0.5f);
+                ally.FinishRun();
+
+                return true;
+            }
         }
 
         if(allygrid[newx, newy] == null && allygrid[oldx, oldy] == ally)
@@ -100,6 +124,7 @@ public class StateController : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
 

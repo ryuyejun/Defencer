@@ -7,6 +7,8 @@ public class EnemyMove : MonoBehaviour
     protected int gridx;
     protected int gridy;
     protected StateController Stat; 
+    [SerializeField] private int currenthp;
+
     private void OnEnable()
     {
         TurnManage.instance.Turn += TurnStart;
@@ -26,6 +28,7 @@ public class EnemyMove : MonoBehaviour
     {
         gridx = startx;
         gridy = starty;
+        currenthp = SO.maxhp;
     }
 
     protected virtual void TurnStart()
@@ -37,6 +40,20 @@ public class EnemyMove : MonoBehaviour
         Stat.HP -= SO.damage;
         Stat.killedEnemy += 1;
         Stat.textUI.SetEnemyText();
+        Stat.textUI.SetAllyHPText();
+        gameObject.SetActive(false);
+    }
+
+    public void GetHit(int dmg)
+    {
+        currenthp -= dmg;
+        if(currenthp <= 0)
+            OnDie();
+    }
+
+    public void OnDie()
+    {
+        Stat.killedEnemy += 1;
         Stat.textUI.SetAllyHPText();
         gameObject.SetActive(false);
     }

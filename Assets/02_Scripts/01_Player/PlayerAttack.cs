@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private PlayerMove move;
     [SerializeField] private StateController Stat;
     [SerializeField] private PlayerSkillSO[] activeSkills = new PlayerSkillSO[3];
+    [SerializeField] private int[] currentCooltimes = new int[3];
     private IObjectPool<AllyMove>[] bulletPool = new IObjectPool<AllyMove>[3];
 
     private void Start()
@@ -20,7 +21,6 @@ public class PlayerAttack : MonoBehaviour
 
             if(activeSkills[currentIndex] != null && activeSkills[currentIndex].skillPrefab != null)
             {
-                Debug.Log("pooling...");
                 bulletPool[currentIndex] = new ObjectPool<AllyMove>(
                     createFunc: () => Instantiate(activeSkills[currentIndex].skillPrefab), // 풀에 총알이 부족할 때 새로 생성하는 방법
                     actionOnGet: (bullet) => bullet.gameObject.SetActive(true), // 풀에서 꺼낼 때 할 행동 (활성화)
@@ -46,17 +46,21 @@ public class PlayerAttack : MonoBehaviour
     {
         if(activeSkills[index] != null)
         {
-            activeSkills[index].skillPrefab.SetStat(Stat, activeSkills[index]);
-            activeSkills[index].UseSkill(move.playerx, Stat, bulletPool[index]);
+            if(currentCooltimes[index] <= 0)
+            {
+                activeSkills[index].UseSkill(move.playerx, Stat, bulletPool[index]);
+
+                currentCooltimes[index] = activeSkills[index].cooltime;
+            }
         }
     }
 
     private void TurnStart()
     {
-        foreach(var skill in activeSkills)
+        for(int i = 0; i < 3; i++)
         {
-            if(skill != null)
-                skill.TurnStart();
+            if(currentCooltimes[i] > 0)
+                currentCooltimes[i] -= 1;
         }
     }
 }
