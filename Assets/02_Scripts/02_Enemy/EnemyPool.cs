@@ -44,6 +44,7 @@ public class EnemyPool : MonoBehaviour
             enemy.SetStat(Stat);
             enemies.Add(enemy);
             enemy.pointer.backboard = board;
+            enemy.pointer.stat = Stat;
             enemy.gameObject.SetActive(false);
         }
     }

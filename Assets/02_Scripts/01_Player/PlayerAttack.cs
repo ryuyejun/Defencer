@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if(currentCooltimes[index] <= 0)
             {
-                activeSkills[index].UseSkill(move.playerx, Stat, bulletPool[index]);
+                activeSkills[index].UseSkill(move.playerx, Stat, bulletPool[index], index, this);
 
                 currentCooltimes[index] = activeSkills[index].cooltime;
             }
@@ -63,4 +63,6 @@ public class PlayerAttack : MonoBehaviour
                 currentCooltimes[i] -= 1;
         }
     }
+
+    public void SetCool(int num) => currentCooltimes[num] = activeSkills[num].cooltime;
 }
