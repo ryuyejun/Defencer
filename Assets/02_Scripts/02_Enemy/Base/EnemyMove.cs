@@ -55,6 +55,7 @@ public class EnemyMove : MonoBehaviour
     {
         Stat.killedEnemy += 1;
         Stat.textUI.SetAllyHPText();
+        Stat.EnemyClearPosition(this, gridx, gridy);
         gameObject.SetActive(false);
     }
 }

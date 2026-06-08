@@ -8,9 +8,12 @@ public abstract class PlayerSkillSO : ScriptableObject
     public IObjectPool<AllyMove> skillpool;
     public int cooltime;
     public int speed;
+    protected StateController stat;
 
-    public virtual void UseSkill(int firsty, StateController stat, IObjectPool<AllyMove> pool)
+    public virtual bool UseSkill(int firsty, StateController stat, IObjectPool<AllyMove> pool, int index, PlayerAttack caster)
     {
         skillpool = pool;
+        this.stat = stat;
+        return true;
     }
 }

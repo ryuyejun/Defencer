@@ -11,6 +11,7 @@ public class EnemyPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [SerializeField] private float zoomTime = 0.5f;
     [SerializeField] private Vector3 offset = new Vector3(-6, 35, 0);
     public RePosBoard backboard;
+    public StateController stat;
     [Header("외곽선")]
     [SerializeField] private Renderer enemyren;
     [SerializeField] private Material outLine;
@@ -25,6 +26,7 @@ public class EnemyPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerEnter(PointerEventData data)
     {
+        if(stat.tileSelecting) return;
         if(!isClicked)
         {
             outLine.SetFloat("_Thickness", 0.1f);
@@ -33,6 +35,7 @@ public class EnemyPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerExit(PointerEventData data)
     {
+        if(stat.tileSelecting) return;
         if(!isClicked)
         {
             outLine.SetFloat("_Thickness", 0f);
@@ -43,6 +46,7 @@ public class EnemyPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         if(data.button == PointerEventData.InputButton.Left)
         {
+            if(stat.tileSelecting) return;
             if(!isClicked)
             {
                 Camera.main.transform.DOKill();
