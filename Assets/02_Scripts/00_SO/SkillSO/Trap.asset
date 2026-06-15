@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9d64786f1eb49339142a986477e494, type: 3}
   m_Name: Trap
   m_EditorClassIdentifier: Assembly-CSharp::Trap
-  dmg: 5
+  name: Trap
+  dmg: 6
   skillPrefab: {fileID: -2608266939520234988, guid: 0d53b97f38165462fb44548b5bf10c32, type: 3}
-  cooltime: 0
+  cooltime: 3
   speed: 0

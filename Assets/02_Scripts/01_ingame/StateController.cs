@@ -52,7 +52,7 @@ public class StateController : MonoBehaviour
         if(enemygrid[newx, newy] != null)
         {
             enemygrid[newx, newy].GetHit(ally.OnHit());
-            ally.FinishRun();
+            ally.FinishRun(true);
         }
 
         if(allygrid[newx, newy] == null)
@@ -72,7 +72,7 @@ public class StateController : MonoBehaviour
         {
             Debug.Log("설치 hit");
             enemygrid[newx, newy].GetHit(ally.OnHit());
-            ally.FinishRun();
+            ally.FinishRun(true);
 
             return true;
         }
@@ -121,7 +121,7 @@ public class StateController : MonoBehaviour
         {
             if(newx < 1)
             {
-                ally.FinishRun();
+                ally.FinishRun(false);
                 return true;
             }
             return false;
@@ -131,7 +131,7 @@ public class StateController : MonoBehaviour
         {
             if(ally != null)
             {
-                Debug.Log("hit");
+
                 ally.transform.DOKill();
 
                 EnemyMove targetEnemy = enemygrid[newx, newy] != null ? enemygrid[newx, newy] : enemygrid[oldx, oldy];
@@ -139,7 +139,7 @@ public class StateController : MonoBehaviour
                 targetEnemy.GetHit(ally.OnHit());
                 allygrid[oldx, oldy] = null;
                 ally.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6), 0.5f);
-                ally.FinishRun();
+                ally.FinishRun(true);
 
                 return true;
             }
@@ -165,11 +165,10 @@ public class StateController : MonoBehaviour
     {
         if(ally != null)
         {
-            Debug.Log("hit");
             EnemyMove target = enemygrid[Ex, Ey];
             target.GetHit(ally.OnHit());
             trapgrid[Tx, Ty] = null;
-            ally.FinishRun();
+            ally.FinishRun(true);
         }
     }
 
