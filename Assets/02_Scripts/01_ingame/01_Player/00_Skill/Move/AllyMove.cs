@@ -48,7 +48,11 @@ public class AllyMove : MonoBehaviour
         foreach(PlayerPerkSO perk in SO.perks) // 퍽 3개 모두에게
         {
             if(perk != null)
-                mul += perk.OnBulletHit(); // OnBulletHit 호출
+            {
+                if(SO.type == SkillType.bullet)
+                    mul += perk.OnBulletHit(); // OnBulletHit 호출
+
+            }
         }
         return (int)(SO.dmg * mul); // 추가 배수만큼 곱해서 반환
     }
