@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -8,12 +9,35 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private StateController Stat;
     [SerializeField] private PlayerSkillSO[] activeSkills = new PlayerSkillSO[3];
     [SerializeField] private int[] currentCooltimes = new int[3];
+    [SerializeField] private CoolText[] coolTexts = new CoolText[3];
+    [SerializeField] private PlayerPerkSO[] allPerks = new PlayerPerkSO[8];
+    public PlayerPerkSO[] selectedPerks = new PlayerPerkSO[3];
     private IObjectPool<AllyMove>[] bulletPool = new IObjectPool<AllyMove>[3];
 
     private void Start()
     {
         if (TurnManage.instance != null)
             TurnManage.instance.Turn += TurnStart;
+
+        string jsondata = File.ReadAllText(Path.Combine(Application.persistentDataPath, "saveData.json"));
+        PerkData data = JsonUtility.FromJson<PerkData>(jsondata);
+
+        for(int j = 0; j < selectedPerks.Length; j++)
+        {
+            {
+                for(int i = 0; i < allPerks.Length; i++)
+                {
+                    if(data.equippedPerks != null && allPerks[i] != null)
+                    {
+                        if(allPerks[i].perkname == data.equippedPerks[j])
+                        {
+                            selectedPerks[j] = allPerks[i];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         
         for(int i = 0; i < 3; i++)
         {
@@ -51,6 +75,7 @@ public class PlayerAttack : MonoBehaviour
                 activeSkills[index].UseSkill(move.playerx, Stat, bulletPool[index], index, this);
 
                 currentCooltimes[index] = activeSkills[index].cooltime;
+                coolTexts[index].UpdateText(currentCooltimes[index]);
             }
         }
     }
@@ -61,8 +86,9 @@ public class PlayerAttack : MonoBehaviour
         {
             if(currentCooltimes[i] > 0)
                 currentCooltimes[i] -= 1;
+            coolTexts[i].UpdateText(currentCooltimes[i]);
         }
     }
 
-    public void SetCool(int num) => currentCooltimes[num] = activeSkills[num].cooltime;
+    public void SetCool(int num) { currentCooltimes[num] = 0; coolTexts[num].UpdateText(currentCooltimes[num]); }
 }

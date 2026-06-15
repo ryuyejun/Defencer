@@ -28,12 +28,30 @@ public class AllyMove : MonoBehaviour
         gridy = starty;
     }
 
-    public void FinishRun()
+    public void FinishRun(bool ishit)
     {
+        if(!ishit)
+        {
+            foreach(PlayerPerkSO perk in SO.perks)
+            {
+                if(perk != null)
+                    perk.OnMissHit();
+                
+            }
+        }
         SO.skillpool.Release(this);
     }
 
-    public int OnHit() { return SO.dmg; }
+    public int OnHit()
+    {
+        float mul = 1f; // 배수
+        foreach(PlayerPerkSO perk in SO.perks) // 퍽 3개 모두에게
+        {
+            if(perk != null)
+                mul += perk.OnBulletHit(); // OnBulletHit 호출
+        }
+        return (int)(SO.dmg * mul); // 추가 배수만큼 곱해서 반환
+    }
 
     protected virtual void TurnStart()
     {
