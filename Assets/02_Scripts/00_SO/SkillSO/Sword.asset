@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d6ed1ee36880476d8a7da66b19af201, type: 3}
-  m_Name: Fireball
-  m_EditorClassIdentifier: Assembly-CSharp::Fireball
+  m_Script: {fileID: 11500000, guid: 527178ac18f884ca59c2c436ec3e7f12, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: Assembly-CSharp::Sword
   skillname: 
-  type: 0
-  dmg: 5
-  skillPrefab: {fileID: 8802870875642923971, guid: 3327d5dfe1d1a41648436a3e88cc13cf, type: 3}
+  type: 2
+  dmg: 4
+  skillPrefab: {fileID: -357639564862409550, guid: b8d3dad0840194f6ca18c10c51fc0252, type: 3}
   cooltime: 3
-  speed: 1
+  speed: 0
   perks:
   - {fileID: 11400000, guid: e186ac71763264059a0fa0b2371f9992, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: b07307f49d82f48f18322f577fc061f3, type: 2}
   - {fileID: 0}

@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9d64786f1eb49339142a986477e494, type: 3}
   m_Name: Trap
   m_EditorClassIdentifier: Assembly-CSharp::Trap
-  name: Trap
-  dmg: 6
+  skillname: 
+  type: 1
+  dmg: 4
   skillPrefab: {fileID: -2608266939520234988, guid: 0d53b97f38165462fb44548b5bf10c32, type: 3}
-  cooltime: 3
+  cooltime: 5
   speed: 0
+  perks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

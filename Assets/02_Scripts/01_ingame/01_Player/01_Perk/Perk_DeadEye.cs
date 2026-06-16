@@ -12,7 +12,7 @@ public class Perk_DeadEye : PlayerPerkSO
         return 0.25f * comb; // 1콤보당 25% 데미지 증가
     }
 
-    public override void OnMissHit()
+    public override void OnBulletMissHit()
     {
         comb = 0; // 적중 실패 시 초기화
     }
