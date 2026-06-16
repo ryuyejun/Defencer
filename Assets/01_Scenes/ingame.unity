@@ -6855,7 +6855,7 @@ MonoBehaviour:
   activeSkills:
   - {fileID: 11400000, guid: 31a8fd361dede4974a566543db001eef, type: 2}
   - {fileID: 11400000, guid: 073e5e788beb044f7be570bdc4cef95d, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f26c8ca93e05d4a8caaf0448065edafe, type: 2}
   currentCooltimes: 000000000000000000000000
   coolTexts:
   - {fileID: 143932004}
@@ -6863,7 +6863,7 @@ MonoBehaviour:
   - {fileID: 1320164491}
   allPerks:
   - {fileID: 11400000, guid: e186ac71763264059a0fa0b2371f9992, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: b07307f49d82f48f18322f577fc061f3, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -4,8 +4,8 @@ public class EnemyMove : MonoBehaviour
 {
     public EnemySO SO;
     public EnemyPointerEnter pointer;
-    protected int gridx;
-    protected int gridy;
+    public int gridx;
+    public int gridy;
     protected StateController Stat; 
     [SerializeField] private int currenthp;
 

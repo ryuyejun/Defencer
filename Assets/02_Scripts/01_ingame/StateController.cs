@@ -51,7 +51,7 @@ public class StateController : MonoBehaviour
 
         if(enemygrid[newx, newy] != null)
         {
-            enemygrid[newx, newy].GetHit(ally.OnHit());
+            enemygrid[newx, newy].GetHit(ally.OnHit(enemygrid[newx, newy]));
             ally.FinishRun(true);
         }
 
@@ -70,8 +70,7 @@ public class StateController : MonoBehaviour
 
         if(enemygrid[newx, newy] != null)
         {
-            Debug.Log("설치 hit");
-            enemygrid[newx, newy].GetHit(ally.OnHit());
+            enemygrid[newx, newy].GetHit(ally.OnHit(enemygrid[newx, newy]));
             ally.FinishRun(true);
 
             return true;
@@ -84,6 +83,23 @@ public class StateController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void AllySwordAttack(AllyMove ally, int x, int?[] y)
+    {
+        for(int i = 0; i < y.Length; i++)
+        {
+            if(y[i] != null)
+            {
+                int ay = y[i].Value;
+                if(enemygrid[x, ay] != null && ally != null)
+                {
+                    EnemyMove targetEnemy = enemygrid[x, ay];
+
+                    targetEnemy.GetHit(ally.OnHit(targetEnemy));
+                }
+            }
+        }
     }
 
     public bool EnemyUpdatePosition(EnemyMove enemy, int oldx, int oldy, int newx, int newy)
@@ -136,7 +152,7 @@ public class StateController : MonoBehaviour
 
                 EnemyMove targetEnemy = enemygrid[newx, newy] != null ? enemygrid[newx, newy] : enemygrid[oldx, oldy];
 
-                targetEnemy.GetHit(ally.OnHit());
+                targetEnemy.GetHit(ally.OnHit(targetEnemy));
                 allygrid[oldx, oldy] = null;
                 ally.transform.DOMove(new Vector3(35f - newx * 6f, 5f, 12 - newy * 6), 0.5f);
                 ally.FinishRun(true);
@@ -166,7 +182,7 @@ public class StateController : MonoBehaviour
         if(ally != null)
         {
             EnemyMove target = enemygrid[Ex, Ey];
-            target.GetHit(ally.OnHit());
+            target.GetHit(ally.OnHit(target));
             trapgrid[Tx, Ty] = null;
             ally.FinishRun(true);
         }

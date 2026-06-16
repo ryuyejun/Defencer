@@ -7,7 +7,7 @@ public class AllyMove_Forward : AllyMove
         int targetx = gridx - SO.speed;
         int targety = gridy;
 
-        if(Stat.AllyUpdatePosition(this, gridx, gridy, targetx, targety))
+        if(stat.AllyUpdatePosition(this, gridx, gridy, targetx, targety))
         {
             gridx = targetx;
             gridy = targety;

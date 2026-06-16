@@ -10,8 +10,15 @@ public class PlayerPerkSO : ScriptableObject
         return 0; // 기본으론 0 반환
     }
 
-    public virtual void OnMissHit() // 탄 적중 실패
+    public virtual void OnBulletMissHit() // 탄 적중 실패
     {
         //기본 없음
     }
+
+    public virtual float OnSwordHit(EnemyMove enemy, StateController stat)
+    {
+        return 0;
+    }
+
+
 }
