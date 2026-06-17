@@ -6,6 +6,7 @@ public class AllyMove : MonoBehaviour
     protected int gridy;
     protected PlayerSkillSO SO;
     protected StateController stat;
+    [SerializeField] private int passTurn;
     private void OnEnable()
     {
         TurnManage.instance.Turn += TurnStart;
@@ -32,7 +33,7 @@ public class AllyMove : MonoBehaviour
     {
         if(!ishit)
         {
-            foreach(PlayerPerkSO perk in SO.perks)
+            foreach(PlayerPerkSO perk in stat.perks)
             {
                 if(perk != null)
                 {
@@ -48,14 +49,22 @@ public class AllyMove : MonoBehaviour
     public int OnHit(EnemyMove enemy)
     {
         float mul = 1f; // 배수
-        foreach(PlayerPerkSO perk in SO.perks) // 퍽 3개 모두에게
+        foreach(PlayerPerkSO perk in stat.perks) // 퍽 3개 모두에게
         {
             if(perk != null)
             {
                 if(SO.type == SkillType.bullet)
+                {
                     mul += perk.OnBulletHit(); // OnBulletHit 호출
+                    mul += perk.OnBulletHit(enemy);
+                }
                 if(SO.type == SkillType.sword)
                     mul += perk.OnSwordHit(enemy, stat);
+                if(SO.type == SkillType.trap)
+                {
+                    mul += perk.OnTrapHit(passTurn);
+                    perk.OnTrapHit(enemy, SO.dmg);
+                }
             }
         }
         return (int)(SO.dmg * mul); // 추가 배수만큼 곱해서 반환
@@ -63,5 +72,11 @@ public class AllyMove : MonoBehaviour
 
     protected virtual void TurnStart()
     {
+        foreach(PlayerPerkSO perk in stat.perks) // 퍽 3개 모두에게
+        {
+            if(perk != null)
+                perk.TurnStart();
+        }
+        passTurn += 1;
     }
 }

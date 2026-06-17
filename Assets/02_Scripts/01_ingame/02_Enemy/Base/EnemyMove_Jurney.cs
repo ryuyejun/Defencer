@@ -6,6 +6,7 @@ public class EnemyMove_Jurney : EnemyMove
     private bool firstmove = true;
     protected override void TurnStart()
     {
+        base.TurnStart();
         int targetx = gridx;
         int targety = gridy + (SO.speed * dir);
         if(firstmove)

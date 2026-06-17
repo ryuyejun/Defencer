@@ -131,6 +131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveForward
   SO: {fileID: 0}
   pointer: {fileID: -2529775466133897418}
+  gridx: 0
+  gridy: 0
+  fatal: 0
+  currenthp: 0
 --- !u!114 &-2529775466133897418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +151,8 @@ MonoBehaviour:
   zoomTime: 0.5
   offset: {x: -6, y: 35, z: 0}
   backboard: {fileID: 0}
+  stat: {fileID: 0}
   enemyren: {fileID: 6929881056079530666}
   outLine: {fileID: 2100000, guid: 43d790877c5e24cb3b6b80ccb36141df, type: 2}
   isClicked: 0
+  me: {fileID: 8971534968190420139}

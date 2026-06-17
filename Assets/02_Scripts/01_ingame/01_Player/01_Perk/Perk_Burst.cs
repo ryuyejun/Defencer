@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Perk_Burst", menuName = "SO/Perk/Burst")]
-public class Perk_Interception : PlayerPerkSO
+public class Perk_Burst : PlayerPerkSO
 {
     public override float OnSwordHit(EnemyMove enemy, StateController stat)
     {

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1114c4d1ee0d449f4bb80b50e5667e6c, type: 3}
   m_Name: Burst
   m_EditorClassIdentifier: Assembly-CSharp::Perk_Interception
-  perkname: Burst
+  perkname: "\uD130\uD2B8\uB9AC\uAE30"
+  perkdisc: "\uAC80 \uACF5\uACA9\uC774 \uC801\uC744 \uD55C \uCE78 \uBC00\uACE0 \uACF5\uACA9\uB825
+    50% \uC99D\uAC00"

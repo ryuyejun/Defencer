@@ -35,7 +35,7 @@ public class login : MonoBehaviour
         string json = JsonUtility.ToJson(data, true); // json형식으로 변경
         byte[] body = Encoding.UTF8.GetBytes(json); // UTF-8 변환
 
-        UnityWebRequest req = new UnityWebRequest(url, "GET"); // GET을 url 서버에
+        UnityWebRequest req = new UnityWebRequest(url, "POST"); // POST을 url 서버에
         req.uploadHandler = new UploadHandlerRaw(body); // 나온 json을 UTF-8로 변환한 것을 업로드 하는 객체
         req.downloadHandler = new DownloadHandlerBuffer(); // 서버에서 반환하는 값 받는 객체
 

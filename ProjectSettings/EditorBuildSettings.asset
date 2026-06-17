@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/01_Scenes/mainscene.unity
     guid: dc9584bb6089840c3a3ed507dc89361a
   - enabled: 1
+    path: Assets/01_Scenes/waveselect.unity
+    guid: f87f53e9779fc44108c55323df50d45c
+  - enabled: 1
     path: Assets/01_Scenes/ready.unity
     guid: 014ad2140e7bf4ff29e8a1448a37bef2
   - enabled: 1

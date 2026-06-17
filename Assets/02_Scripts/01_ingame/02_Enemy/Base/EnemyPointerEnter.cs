@@ -16,6 +16,7 @@ public class EnemyPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [SerializeField] private Renderer enemyren;
     [SerializeField] private Material outLine;
     [SerializeField] private bool isClicked = false;
+    [SerializeField] private EnemyMove me;
 
     private void Start()
     {
@@ -55,6 +56,7 @@ public class EnemyPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerEx
                 backboard.gameObject.SetActive(true);
                 backboard.callE = this;
                 isClicked = true;
+                stat.SetEnemyStat(me);
             }
         }
     }
@@ -67,5 +69,6 @@ public class EnemyPointerEnter : MonoBehaviour, IPointerEnterHandler, IPointerEx
         backboard.gameObject.SetActive(false);
         isClicked = false;
         outLine.SetFloat("_Thickness", 0f);
+        stat.ClearEnemyStat();
     }
 }

@@ -16,9 +16,9 @@ MonoBehaviour:
   type: 1
   dmg: 4
   skillPrefab: {fileID: -2608266939520234988, guid: 0d53b97f38165462fb44548b5bf10c32, type: 3}
-  cooltime: 5
+  cooltime: 0
   speed: 0
   perks:
+  - {fileID: 11400000, guid: e186ac71763264059a0fa0b2371f9992, type: 2}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1c80f62fce9114e74a8e34d9e1991fb0, type: 2}

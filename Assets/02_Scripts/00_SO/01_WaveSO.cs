@@ -5,4 +5,5 @@ using System.Collections.Generic;
 public class WaveSO : ScriptableObject
 {
     public List<EnemySO> enemyList = new List<EnemySO>();
+    public int num;
 }

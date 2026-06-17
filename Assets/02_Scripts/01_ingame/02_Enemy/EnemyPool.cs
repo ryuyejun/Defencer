@@ -1,6 +1,9 @@
+using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class EnemyPool : MonoBehaviour
 {
@@ -8,12 +11,14 @@ public class EnemyPool : MonoBehaviour
     [SerializeField] private TurnManage turn;
     [SerializeField] private StateController Stat;
     [SerializeField] private List<EnemyMove> enemies = new List<EnemyMove>();
-    public List<WaveSO> waveList = new List<WaveSO>();
     [SerializeField] private int[] enemySlot = new int[5] {2, 1, 0, -1, -2};
+    [SerializeField] private List<WaveSO> waves = new List<WaveSO>();
+    [SerializeField] private RectTransform clear;
     public WaveSO currentWaveData;
     public int currentWaveNum;
     private int turnDelay;
     private int enemyNum;
+    private string savePath; // 저장 경로
 
     private void OnEnable()
     {
@@ -25,15 +30,8 @@ public class EnemyPool : MonoBehaviour
         turn.Turn -= TurnStart;
     }
 
-    public void StartWave(int wavenum)
+    public void StartWave()
     {
-        if(wavenum >= waveList.Count)
-        {
-            Debug.Log("게임 클리어");
-            return;
-        }
-        currentWaveData = waveList[wavenum];
-        currentWaveNum = wavenum;
         Stat.killedEnemy = 0;
         enemyNum = 0;
         turnDelay = 0;
@@ -54,21 +52,44 @@ public class EnemyPool : MonoBehaviour
         foreach(EnemyMove enemy in enemies)
             Destroy(enemy.gameObject);
         enemies.Clear();
-        Debug.Log($"{currentWaveNum + 1}번째 웨이브 클리어");
+        Debug.Log($"{currentWaveNum + 1}스테이지 클리어");
 
-        StartCoroutine(WaveEndWait(currentWaveNum));
+        clear.DOKill();
+        clear.DOAnchorPos(Vector2.zero, 0.5f);
+
+        PerkData data = new PerkData(); // 데이터에 객체 생성
+        for(int i = 0; i < data.equippedPerks.Length; i++)
+        {
+            data.equippedPerks[i] = "";
+        }
+        data.wavenum = -1;
+        data.isingame = false;
+
+        string json = JsonUtility.ToJson(data, true); // json으로 저장
+
+        File.WriteAllText(savePath, json); // 이거 쓰면 이미 UTF-8임, 저장 경로에 이 json 파일 저장
+        StartCoroutine(Intermission());
     }
-    private IEnumerator WaveEndWait(int wavenum)
-    {
-        yield return new WaitForSeconds(10f);
 
-        Debug.Log($"{wavenum + 2}번째 웨이브 시작");
-        StartWave(wavenum + 1);
+    private IEnumerator Intermission()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene("waveselect");
     }
 
     private void Start()
     {
-        StartWave(0);
+        savePath = Path.Combine(Application.persistentDataPath, "saveData.json"); // 가장 안전한 장소
+        string jsondata = File.ReadAllText(Path.Combine(Application.persistentDataPath, "saveData.json"));
+        PerkData data = JsonUtility.FromJson<PerkData>(jsondata);
+        currentWaveNum = data.wavenum;
+        foreach(WaveSO wave in waves)
+        {
+            if(wave.num == data.wavenum)
+                currentWaveData = wave;
+        }
+        StartWave();
     }
 
 
