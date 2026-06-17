@@ -39,6 +39,11 @@ public class EnemyMove : MonoBehaviour
         fatal -= 1;
         currenthp -= decayPower / 2;
         decayCount -= 1;
+        if(decayCount <= 0)
+        {
+            decayPower = 0;
+            decayCount = 0;
+        }
     }
 
     public void FinishRun()
