@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+/gradlew text eol=lf
+*.bat text eol=crlf
+*.jar binary
+=======
 # Auto detect text files and perform LF normalization
 * text=auto
 
@@ -8,3 +13,4 @@ Assets/01_Scenes/AssetDemo/PolygonNature/Terrains/*.asset filter=lfs diff=lfs me
 *.txt  text eol=lf
 *.xml  text eol=lf
 *.md   text eol=lf
+>>>>>>> 29329b3190b561645d3ef2a054d0a64599513f74
