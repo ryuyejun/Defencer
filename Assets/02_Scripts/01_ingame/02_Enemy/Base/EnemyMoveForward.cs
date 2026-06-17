@@ -4,6 +4,7 @@ public class EnemyMoveForward : EnemyMove
 {
     protected override void TurnStart()
     {
+        base.TurnStart();
         int targetx = gridx + SO.speed;
         int targety = gridy;
 

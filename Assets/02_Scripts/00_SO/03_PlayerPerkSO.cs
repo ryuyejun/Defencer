@@ -4,15 +4,26 @@ using UnityEngine;
 public class PlayerPerkSO : ScriptableObject
 {
     public string perkname; // 이름
+    public string perkdisc;
+    protected PlayerAttack player;
 
-    public virtual float OnBulletHit() // 탄 적중
+    public void EquipPerk(PlayerAttack caster)
     {
-        return 0; // 기본으론 0 반환
+        player = caster;
     }
 
-    public virtual void OnBulletMissHit() // 탄 적중 실패
+    public virtual float OnBulletHit()
     {
-        //기본 없음
+        return 0;
+    }
+
+    public virtual float OnBulletHit(EnemyMove enemy)
+    {
+        return 0;
+    }
+
+    public virtual void OnBulletMissHit()
+    {
     }
 
     public virtual float OnSwordHit(EnemyMove enemy, StateController stat)
@@ -20,5 +31,23 @@ public class PlayerPerkSO : ScriptableObject
         return 0;
     }
 
+    public virtual float OnTrapHit(int turn)
+    {
+        return 0;
+    }
 
+    public virtual void OnTrapHit(EnemyMove enemy, int dmg)
+    {
+
+    }
+
+    public virtual void EnemyDie()
+    {
+
+    }
+
+    public virtual void TurnStart()
+    {
+
+    }
 }

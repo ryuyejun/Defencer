@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::login
   userName: {fileID: 202473861}
   pw: {fileID: 397778841}
-  url: 
+  url: http://localhost:8080/users/login
   warningBoard: {fileID: 1452983618}
   warningtext: {fileID: 2066273629}
 --- !u!4 &1244470270
@@ -1830,7 +1830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::sign
   userName: {fileID: 202473861}
   pw: {fileID: 397778841}
-  url: 
+  url: http://localhost:8080/users/register
   warningBoard: {fileID: 1452983618}
   warningtext: {fileID: 2066273629}
 --- !u!1 &1435639278

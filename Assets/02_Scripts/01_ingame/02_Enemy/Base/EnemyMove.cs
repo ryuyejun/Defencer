@@ -6,8 +6,11 @@ public class EnemyMove : MonoBehaviour
     public EnemyPointerEnter pointer;
     public int gridx;
     public int gridy;
+    public int fatal;
     protected StateController Stat; 
-    [SerializeField] private int currenthp;
+    public int currenthp;
+    public int decayPower;
+    public int decayCount;
 
     private void OnEnable()
     {
@@ -33,6 +36,14 @@ public class EnemyMove : MonoBehaviour
 
     protected virtual void TurnStart()
     {
+        fatal -= 1;
+        currenthp -= decayPower / 2;
+        decayCount -= 1;
+        if(decayCount <= 0)
+        {
+            decayPower = 0;
+            decayCount = 0;
+        }
     }
 
     public void FinishRun()
@@ -46,7 +57,7 @@ public class EnemyMove : MonoBehaviour
 
     public void GetHit(int dmg)
     {
-        currenthp -= dmg;
+        currenthp -= (int)(dmg * (fatal >= 1? 1.5f : 1.0f));
         if(currenthp <= 0)
             OnDie();
     }
@@ -55,7 +66,13 @@ public class EnemyMove : MonoBehaviour
     {
         Stat.killedEnemy += 1;
         Stat.textUI.SetAllyHPText();
+        Stat.textUI.SetEnemyText();
         Stat.EnemyClearPosition(this, gridx, gridy);
+        foreach(PlayerPerkSO perk in Stat.perks) // 퍽 3개 모두에게
+        {
+            if(perk != null)
+                perk.EnemyDie();
+        }
         gameObject.SetActive(false);
     }
 }

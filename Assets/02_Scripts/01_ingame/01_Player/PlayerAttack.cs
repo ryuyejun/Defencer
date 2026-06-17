@@ -6,13 +6,16 @@ using UnityEngine.Pool;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private PlayerMove move;
-    [SerializeField] private StateController Stat;
     [SerializeField] private PlayerSkillSO[] activeSkills = new PlayerSkillSO[3];
     [SerializeField] private int[] currentCooltimes = new int[3];
     [SerializeField] private CoolText[] coolTexts = new CoolText[3];
-    [SerializeField] private PlayerPerkSO[] allPerks = new PlayerPerkSO[8];
+    [SerializeField] private PlayerPerkSO[] allPerks = new PlayerPerkSO[9];
+    public StateController Stat;
     public PlayerPerkSO[] selectedPerks = new PlayerPerkSO[3];
     private IObjectPool<AllyMove>[] bulletPool = new IObjectPool<AllyMove>[3];
+    public int deadeyecomb;
+    public int practiceStack;
+    public int bloodPointStack;
 
     private void Start()
     {
@@ -32,12 +35,15 @@ public class PlayerAttack : MonoBehaviour
                         if(allPerks[i].perkname == data.equippedPerks[j])
                         {
                             selectedPerks[j] = allPerks[i];
+                            selectedPerks[j].EquipPerk(this);
                             break;
                         }
                     }
                 }
             }
         }
+
+        Stat.SetPerk(selectedPerks);
         
         for(int i = 0; i < 3; i++)
         {

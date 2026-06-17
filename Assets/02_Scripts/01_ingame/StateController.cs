@@ -2,23 +2,43 @@ using System;
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class StateController : MonoBehaviour
 {
     public int HP;
     public int killedEnemy;
     public ConfigTextUI textUI;
+    public int turn;
 
     public int mapX;
     public int mapY;
     public bool tileSelecting;
-    private EnemyMove[,] enemygrid;
+    public PlayerPerkSO[] perks = new PlayerPerkSO[3];
+    public EnemyMove[,] enemygrid;
     private AllyMove[,] allygrid;
     private AllyMove[,] trapgrid;
     [SerializeField] private GameObject buttonTileGroup;
     [SerializeField] private GameObject turnButton;
+    [SerializeField] private EnemyPool pool;
+    [SerializeField] private GameObject enemyState;
+    [SerializeField] private TMP_Text enemyStateText;
     private Vector3 tileGrid;
     private Action<Vector2> tileClick;
+
+    private void OnEnable()
+    {
+        TurnManage.instance.Turn += TurnStart;
+    }
+    private void OnDisable()
+    {
+        TurnManage.instance.Turn -= TurnStart;
+    }
+
+    private void TurnStart()
+    {
+        turn += 1;
+    }
 
     private void Awake()
     {
@@ -27,6 +47,27 @@ public class StateController : MonoBehaviour
         allygrid = new AllyMove[mapX, mapY];
         trapgrid = new AllyMove[mapX, mapY];
     }
+
+    public void SetEnemyStat(EnemyMove enemy)
+    {
+        enemyState.SetActive(true);
+        enemyStateText.text = $"HP : {enemy.currenthp}\nDMG : {enemy.SO.damage}\n취약 : {enemy.fatal}\n부식 : {enemy.decayPower} | {enemy.decayCount}";
+    }
+
+    public void ClearEnemyStat()
+    {
+        enemyStateText.text = "만약 이 글이 보인다면 버그 입니다.";
+        enemyState.SetActive(false);
+    }
+
+    public void SetPerk(PlayerPerkSO[] _perks)
+    {
+        for(int i = 0; i < perks.Length; i++)
+        {
+            perks[i] = _perks[i];
+        }
+    }
+
     private bool CanSetCoord(int x, int y)
     {
         return x >= 0 && x < mapX && y >= 0 && y < mapY;
